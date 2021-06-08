@@ -1,0 +1,44 @@
+Port Forwarding Rules
+
+A server through the use of server software provides response 
+to request through ports
+The virtual machine created is an Ubuntu Virtual server
+name: newserver
+It has two services installed on It
+Which are runnning and provides their services through
+ports exposed by the newserver
+
+Jenkins is installed to be served on port 8080 of the VM(Guest)
+Gitlab is installed to be served on port 80 of the VM(Guest)
+
+There should be a way to acces this service from the outside
+This is where port forwarding comes in
+It provides a way to connect to your VM through port forwarding configurations
+Link: https://www.youtube.com/watch?v=cDF4X7RmV4Q
+
+Question: Hooks
+Why do I have to keep running the command
+sudo gitlab-ctl reconfigure
+everytime I restart my virtual machine to enable gitlab listen
+on my specified port: 8081
+
+Another hook:
+I configured gitlb to listen on port 8081
+Configured the port forwarding on vm box
+Upon running this command on my vm
+sudo netstat -tulnp | grep :8081
+I found out Unicorn the websercer for gitlab is listening both
+on port 80 and 8081, and unicorn prefers to serve on port 80
+When the port configuration of the guest is et to 80 but does not 
+server when the port configuration of the guest is set to 8081
+even if unicorn(webserver of gitlab) is listening on that port too.
+I do not know why tho...
+
+How to SSH into a VM
+https://dev.to/yassineselllami/how-to-ssh-into-ubuntu-vm-virtualbox-from-host-machine-1kii
+ssh -p 2222 maestro@127.0.0.1
+---------------------
+
+Stopped at Chapter 4
+
+
